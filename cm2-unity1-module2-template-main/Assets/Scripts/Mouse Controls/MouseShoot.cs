@@ -12,7 +12,7 @@ public class MouseShoot : MonoBehaviour
     public GameObject muzzleFlashPrefab; // Muzzle flash effect
     public GameObject hitEffectPrefab;   // Bullet impact effect
     public Transform muzzlePoint;        // Where the bullet starts
-
+    [SerializeField]
     private Camera fpsCam;
     private AudioSource source;
     private LineRenderer bulletTrail;
@@ -21,7 +21,7 @@ public class MouseShoot : MonoBehaviour
 
     void Start()
     {
-        fpsCam = Camera.main;
+        // fpsCam = Camera.main;
         source = GetComponent<AudioSource>();
 
         // Create and configure LineRenderer
@@ -64,9 +64,12 @@ public class MouseShoot : MonoBehaviour
         if (Physics.Raycast(bulletStartPos, fpsCam.transform.forward, out hit, range))
         {
             IDamagable damageable = hit.collider.GetComponent<IDamagable>();
-            if (damageable != null)
-            {
+            DoorButton doorButton = hit.collider.GetComponent<DoorButton>();
+            if (damageable != null){
                 damageable.TakeDamage(damage);
+            }
+            if (doorButton != null){
+                doorButton.OpenDoor();
             }
 
             // Show bullet impact effect

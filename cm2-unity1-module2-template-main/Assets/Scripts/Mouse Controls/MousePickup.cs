@@ -7,14 +7,14 @@ public class MousePickup : MonoBehaviour
     public float range = 20;
     public float throwPower = 10;
     public Transform handTransform;
-
+    [SerializeField]
     private Camera fpsCam;
     private Vector3 rayOrigin;
     private GameObject pickedUpItem = null;
 
     void Start()
     {
-        fpsCam = Camera.main;
+        // fpsCam = Camera.main;
     }
 
     void Update()

@@ -10,8 +10,7 @@ public class Move : MonoBehaviour
     public KeyCode runKey = KeyCode.LeftShift;
 
     private Rigidbody rb;
-
-    void Start()
+     void Start()
     {
         rb = GetComponent<Rigidbody>();
     }
